@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Consultorio Mayra, Toluca</title>
+
+  <link rel="stylesheet" href="Css.css" />
+  <link rel="stylesheet" href=" https://cdn.jsdelivr.net/npm/glider-js@1.7.3/glider.min.css" />
+  <!-- libreria para slider swiper(carrusel) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.3/dist/full.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
+  
+</head>
+
+<body>
+  <header class="header">
+    <nav class="nav">
+      <a href="#inicio" class="logo nav-link">Consultorio Mayra</a>
+      <button class="nav-toggle" aria-label="Abrir menú">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-menu">
+        <li class="nav-menu-item">
+          <a href="#inicio" class="nav-menu-link nav-link">Inicio</a>
+        </li>
+        <li class="nav-menu-item">
+          <a href="#servicios" class="nav-menu-link nav-link">Servicios</a>
+        </li>
+        <li class="nav-menu-item">
+          <a href="#ubicacion" class="nav-menu-link nav-link">Ubicacion</a>
+        </li>
+        <li class="nav-menu-item">
+          <button onclick="window.modal1.showModal();" class="nav-Button nav-menu-link">Agenda Cita</button>
+          <dialog id="modal1" >
+              <h2>AgendA tu cita</h2>
+              <div class="modal-text">
+                <div>
+                
+                  <!-- <form action="" id="formulario-cita">
+                    <label for="nombres">
+                      text
+                      <input class="input"  id="nombres" type="text" name="nombres">
+                    </label>
+                    <input class="input" type="text" name="ap-paterno">
+                    <input class="input" type="text" name="ap-materno">
+                    <input class="input" type="text" name="email">
+                    <input class="input" type="text" name="telefono">
+                    <input class="input" type="password" name="contrasena">
+                    <button type="submit" >enviar</button>
+                  </form> -->
+                </div>
+                <!-- <p>
+                  Hoy lo fumé hasta el filtro y después me prendí el siguiente
+                  No me gusta desperdiciar la muerte Se que, parezco depresivo
+                  en lo que escribo siempre Pero solo es desgana, es que tengo
+                  ojeras hasta en la mente Lágrimas.. que no mojan ni reflejan
+                  Como una catapulta que no arroja, pero aleja Mi cabeza como el
+                  tiempo, y su paradoja compleja Que sufre por lo que pasa, o se
+                  despoja o se despeja Es inercia, estoy fumando y con más
+                  fuerza Pero tengo reserva, y no la gastaré en reversa Y una
+                  peli para devolver hace meses en la mesa Y lo peor es que no
+                  la ví, o me aburro apenas empieza
+                </p> -->
+              </div>
+
+              <button onclick="window.modal1.close();" class="btn-cerrar-modal">Cerrar</button>
+          </dialog>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <div class="w-full max-w-xs">
+    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <div class="ocultar mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+          Nombre(s)
+        </label>
+        <input name="nombres" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username">
+      </div>
+      <div class="ocultar mb-6">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+          Apellido Paterno
+        </label>
+        <input name="ap-paterno" class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="text" type="text" placeholder="******************">
+        <p class="text-red-500 text-xs italic">Please choose a password.</p>
+      </div>
+      <div  id="prueba" class="ocultar mb-6">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+          Apellido Materno
+        </label>
+        <input name="ap-materno" class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="text" type="text" placeholder="******************">
+        <p class="text-red-500 text-xs italic">Please choose a password.</p>
+      </div>
+      <div  id="prueba" class="mb-6">
+        <label class="block text-black text-sm font-bold mb-2" for="password">
+         Correo electronico
+        </label>
+        <input name="email" class="shadow bg-white appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="text" placeholder="******************">
+        <p class="text-red-500 text-xs italic">Please choose a password.</p>
+      </div>
+      <div  id="prueba" class="ocultar mb-6">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+          Numero telefonico
+        </label>
+        <input name="telefono" class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="text" placeholder="******************">
+        <p class="text-red-500 text-xs italic">Please choose a password.</p>
+      </div>
+      <div  id="prueba" class="mb-6">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+          Contraseña
+        </label>
+        <input name="contrasena" class="shadow bg-white appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************">
+        <p class="text-red-500 text-xs italic">Please choose a password.</p>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <button id="btnIniciar" onclick="Login()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+          Iniciar Sesion
+        </button>
+        <button style="display:none" onclick="manejarEnvio()" id="btnRegistrar" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+          Registrarse
+        </button>
+        <a
+        id="pregunta"
+        onclick="toggle()"
+        class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
+          Registrar
+        </a>
+      </div>
+    </form>
+    <p class="text-center text-gray-500 text-xs">
+      &copy;2020 Acme Corp. All rights reserved.
+    </p>
+  </div>
+  
+
+  <main id="inicio">
+    <div>
+      <img src="" alt="" />
+    </div>
+
+    <h1 class="titulo">Dra. Mayra Lopez Benitez</h1>
+    <p class="formato">
+      Porque nos preocupamos por tu salud ofrecemos un servicio de calidad,
+      para que puedas seguir sonriendo , agenda tu cita.
+    </p>
+
+    <!-- swiper carrusel code -->
+
+    <!-- Additional container -->
+    <div class="swiper swiper-hero">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="swiper-slide">
+          <img src="consultorioFotos/img1.jpg" alt="" />
+        </div>
+        <div class="swiper-slide">
+          <img src="consultorioFotos/img3.jpg" alt="" />
+        </div>
+        <div class="swiper-slide">
+          <img src="consultorioFotos/img4.jpg" alt="" />
+        </div>
+        <div class="swiper-slide">
+          <img src="consultorioFotos/img5.jpg" alt="" />
+        </div>
+        <div class="swiper-slide">
+          <img src="consultorioFotos/img6.jpg" alt="" />
+        </div>
+        <div class="swiper-slide">
+          <img src="consultorioFotos/img7.jpg" alt="" />
+        </div>
+      </div>
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
+
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+
+      <!-- If we need scrollbar -->
+      <!-- <div class="swiper-scrollbar"></div> -->
+    </div>
+
+    <p class="formato">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit nisi
+      assumenda doloribus sapiente autem cum? Iste corporis exercitationem id
+      necessitatibus perferendis iure sequi aliquid recusandae accusantium,
+      rem magnam quas repudiandae doloremque ipsa corrupti earum tenetur atque
+      fuga quidem voluptate dolores sint molestias impedit autem. Mollitia id
+      temporibus, voluptate placeat doloremque quos consectetur sunt
+      praesentium rem quod necessitatibus ducimus voluptatum minima minus
+      aperiam neque fugiat ut eum? Ipsam ex labore, animi dignissimos fugiat
+      laborum accusamus commodi pariatur libero aut facere ea ad hic nesciunt?
+      Natus doloremque, illo dolor soluta obcaecati velit optio odit vitae
+      quia eligendi officia. Quasi vero aperiam iure nam et adipisci delectus
+      natus earum sapiente, eos, expedita rem accusamus. Qui necessitatibus
+      eveniet officia distinctio sed inventore beatae, ratione nesciunt, vero
+      ducimus consequatur dolor commodi delectus exercitationem laboriosam
+      odit magnam natus totam excepturi sunt et labore itaque! Ipsum, cum. Rem
+      minima, laboriosam asperiores nam ipsum culpa natus facilis recusandae
+      earum eum aspernatur aliquid possimus ex illo incidunt doloribus
+      explicabo aliquam repudiandae quidem ea. Facilis, praesentium nostrum
+      optio eveniet eum magnam tenetur alias porro rerum ullam odio labore at
+      modi aut excepturi beatae. Excepturi magni sed aperiam est nostrum iure
+      ut tenetur ex quasi. Vero saepe nesciunt reiciendis pariatur doloremque
+      excepturi mollitia numquam quaerat commodi eaque minus inventore dicta
+      voluptatibus, ipsam, beatae eius, adipisci ipsa. Praesentium, facilis.
+      Iste a voluptatem at maiores, doloribus deserunt dolores ad, porro
+      distinctio autem unde. Saepe voluptatem, earum delectus quasi eius
+      voluptatum aut, sunt corporis vitae quas expedita veniam? Quasi nisi
+      omnis eaque, aliquid perspiciatis excepturi aspernatur. Tempora maxime
+      consequuntur quibusdam in libero eum repellat error, omnis incidunt
+      itaque rem harum amet officiis, excepturi reiciendis architecto
+      doloremque ipsa porro soluta rerum natus, facilis assumenda id
+      blanditiis? Dolorum culpa saepe obcaecati soluta quia nihil autem rem
+      illum sunt est ad id voluptas voluptatem similique, quasi sequi
+      veritatis. Repellat in tenetur odit nobis nesciunt quis iste amet
+      excepturi. Labore dolore laborum deleniti iste magni perferendis
+      voluptatem nobis veniam libero odio officiis numquam rem quibusdam
+      ratione cum commodi at, aliquid veritatis. Incidunt et voluptas vero
+      dolor asperiores ratione maxime at odit. Rerum, sunt. Molestias nisi
+      amet dolore ratione ad molestiae, quam corporis dicta non nihil fuga
+      aliquam numquam tenetur aperiam ipsum illum deserunt eos accusantium
+      minus aut sunt error impedit! Temporibus maxime perferendis non qui.
+      Rerum qui tempore at consequatur, facere obcaecati aliquam ipsam
+      assumenda natus hic explicabo dignissimos quibusdam facilis minus,
+      maiores, quidem consectetur maxime aperiam deserunt ratione? Earum
+      placeat et pariatur quod, quis deleniti qui itaque veniam id
+      voluptatibus ducimus laudantium ratione! Ab, id quas quis consequatur
+      quia saepe corporis in assumenda veritatis itaque soluta, ut totam.
+      Commodi aperiam aspernatur quas illum, esse reprehenderit amet
+      perferendis ut at? Totam, fugit laboriosam nisi nihil quam cumque
+      eligendi maiores placeat recusandae illum aperiam earum ullam, aliquid
+      at quis. Corporis ex modi, incidunt numquam soluta tenetur sit sint
+      mollitia, culpa voluptate vel iure iusto id cum commodi nesciunt
+      explicabo temporibus ratione quia ipsum aliquam deserunt quo maxime.
+      Optio animi ad delectus in consequatur unde libero ex ipsum nam soluta
+      vero quam itaque error accusantium, illo officiis quasi? Voluptatum fuga
+      repudiandae rerum eum soluta inventore vel aliquam nostrum ab ducimus
+      dignissimos quasi, aut iusto dolorum suscipit quibusdam nesciunt, animi
+      est quam mollitia! Sed cum vel eum esse at corrupti molestias quibusdam
+      architecto, quo vero delectus cupiditate voluptatibus non odio repellat.
+      Quod repudiandae doloribus ratione natus, eius possimus eligendi in,
+      quas perferendis accusamus dolore adipisci vel nemo, totam quaerat est
+      dolorem consectetur maiores rerum distinctio. Saepe alias aliquid
+      quaerat corrupti quam error officia quod facilis recusandae impedit
+      exercitationem eaque explicabo eligendi neque inventore provident modi
+      laudantium, nesciunt nulla sunt autem fugiat facere? Veniam beatae modi
+      quia earum dignissimos repellendus ratione, magni commodi fuga aliquam
+      quaerat excepturi perferendis. Eaque quidem eius id veniam nostrum ad
+      repellat corporis maiores! Cum magni odio obcaecati, culpa magnam
+      commodi facilis animi? Optio amet, molestiae totam beatae sed
+      perspiciatis blanditiis id tenetur temporibus nihil sunt cupiditate quod
+      quam provident animi ea consequatur atque numquam perferendis eum
+      corrupti sapiente qui! Pariatur corrupti quas mollitia fugit asperiores
+      quaerat cum, officiis quia nostrum a quis quod corporis ipsa vel sint.
+      Obcaecati laboriosam, nisi quam reprehenderit atque rem ipsa natus
+      quasi, voluptate similique commodi. Dicta eligendi voluptates reiciendis
+      quae molestias, repudiandae, illo aliquid nam in, magnam ipsam
+      blanditiis sapiente. Eius deserunt praesentium velit blanditiis?
+      Eligendi perspiciatis distinctio nesciunt pariatur, corporis vitae
+      veritatis exercitationem. Nostrum repellendus praesentium minus facilis
+      perferendis molestiae nulla at error pariatur maxime unde atque enim
+      animi repellat quod, voluptatibus et ducimus. Velit deserunt, quasi
+      incidunt ea minus aut quam, repudiandae laudantium repellendus culpa
+      ipsa natus praesentium debitis. Inventore, nobis ab eos non repellat
+      neque placeat, nulla eligendi, ipsum quis quo culpa nihil voluptas quod
+      corporis quidem suscipit temporibus amet vitae ut aliquam cupiditate
+      quos! Corporis hic, magni necessitatibus libero unde nulla quis quia
+      saepe, quibusdam, quo laudantium voluptatum reiciendis distinctio? Dicta
+      exercitationem obcaecati minima illum magni vero illo ea eum tempora
+      deleniti adipisci nemo impedit est nisi aperiam porro sit, aliquid ipsam
+      dolor vitae, ipsa harum. Voluptate veniam nulla perspiciatis atque
+      aperiam voluptatibus quos reiciendis, commodi blanditiis cumque vel!
+      Autem illo provident quidem doloribus nam dolore nobis fugit,
+      accusantium cupiditate, natus aperiam nesciunt maxime pariatur molestias
+      mollitia repellendus? Magni iste architecto consequuntur in obcaecati
+      sapiente quidem, laudantium molestias ipsam praesentium voluptatibus,
+      dolorem qui? Illum assumenda, animi architecto dolor tempore minima
+      consectetur ducimus modi illo. Nisi, aliquam asperiores? Consectetur
+      quos odio id ipsum fuga, alias soluta provident rem sint veniam cumque
+      dolorum iure optio dolorem nesciunt deleniti similique, recusandae
+      aspernatur, hic pariatur non quia! Debitis ut nisi deserunt reiciendis.
+      Maxime magnam vitae ad in ut. Doloribus inventore numquam sit esse
+      asperiores officiis beatae, quae veniam eligendi facilis nostrum
+      voluptatibus quibusdam ipsam autem ut nihil. Laudantium velit
+      voluptatibus ipsum, omnis assumenda, veniam vel eligendi sit reiciendis
+      ut perferendis porro, placeat perspiciatis eius qui nesciunt odit
+      corrupti consectetur optio minus id autem blanditiis harum. Maiores
+      aliquid quo labore vel earum atque voluptatem nostrum veritatis unde
+      doloribus fugit illum alias ipsam sint laudantium quod delectus ducimus
+      reiciendis ipsum at veniam, nulla minima?
+    </p>
+    <h1 id="servicios" class="titulo">Ofrecemos Servicios como:</h1>
+
+    <!-- cartas servicios -->
+    <div class="container-card">
+      <div class="card-father">
+        <div class="card">
+          <div class="card-enfrente imgEstetica">
+            <div class="bg"></div>
+            <div class="cuerpo-carta-enfrente">
+              <h1>Reparaciones esteticas</h1>
+            </div>
+          </div>
+          <div class="card-atras">
+            <div class="cuerpo-carta-atras">
+              <h1>Reparaciones esteticas</h1>
+              <p>
+                Las reconstrucciones estéticas son una solución para dientes
+                anteriores (incisivos, laterales o caninos)
+              </p>
+              <!-- <input type="button" value="Leer más"> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-father">
+        <div class="card">
+          <div class="card-enfrente imgProtesis">
+            <div class="bg"></div>
+            <div class="cuerpo-carta-enfrente">
+              <h1>Protesis fijas y removibles</h1>
+            </div>
+          </div>
+          <div class="card-atras">
+            <div class="cuerpo-carta-atras">
+              <h1>Protesis</h1>
+              <p>
+                Es una estructura metálica con varios dientes artificiales que
+                se ancla a los dientes y sirve para reponer las piezas
+                ausentes.
+              </p>
+              <!-- <input type="button" value="Leer más"> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-father">
+        <div class="card">
+          <div class="card-enfrente imgExodoncias">
+            <div class="bg"></div>
+            <div class="cuerpo-carta-enfrente">
+              <h1>Exodoncias</h1>
+            </div>
+          </div>
+          <div class="card-atras">
+            <div class="cuerpo-carta-atras">
+              <h1>Exodoncias</h1>
+              <p>
+                Es la intervención quirúrgica en el que se extrae un diente de
+                la cavidad oral.
+              </p>
+              <!-- <input type="button" value="Leer más"> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-father">
+        <div class="card">
+          <div class="card-enfrente imgLimpiezaB">
+            <div class="bg"></div>
+            <div class="cuerpo-carta-enfrente">
+              <h1>Limpieza bucal</h1>
+            </div>
+          </div>
+          <div class="card-atras">
+            <div class="cuerpo-carta-atras">
+              <h1>Limpieza</h1>
+              <p>
+                Permite limpiar las “bolsas periodontales”, un espacio entre
+                la encía y el diente en donde se acumulan el sarro y las
+                bacterias causantes de la periodontitis.
+              </p>
+              <!-- <input type="button" value="Leer más"> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-father">
+        <div class="card">
+          <div class="card-enfrente imgOrtodoncia">
+            <div class="bg"></div>
+            <div class="cuerpo-carta-enfrente">
+              <h1>Ortodoncia</h1>
+            </div>
+          </div>
+          <div class="card-atras">
+            <div class="cuerpo-carta-atras">
+              <h1>Ortodoncia</h1>
+              <p>
+                Se encarga de los problemas de los dientes y la mandíbula
+                para: Enderezar los dientes, Corregir problemas con la
+                mordida(frenos).
+              </p>
+              <!-- <input type="button" value="Leer más"> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="formato">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum dolorem
+      odit quisquam culpa velit ut autem aliquam nihil, itaque omnis minus
+      consectetur ea praesentium blanditiis voluptas saepe. Vel vitae id
+      corporis alias asperiores ab, impedit, cumque aut assumenda eius aperiam
+      minus pariatur omnis unde exercitationem veniam odit et voluptatibus
+      aliquid? Nulla maxime sequi, corrupti est iure illum. Magni culpa
+      voluptatum laboriosam expedita officia distinctio assumenda minus
+      placeat modi, perferendis laudantium praesentium nemo rerum eveniet unde
+      exercitationem hic similique molestiae ut reprehenderit pariatur
+      eligendi quasi quibusdam? Itaque cumque nostrum possimus suscipit,
+      laudantium pariatur veniam facilis commodi libero totam impedit ducimus
+      autem dolorem voluptas rerum officia illo explicabo quod? Quia omnis
+      quas incidunt voluptatibus magni fuga ipsum assumenda quisquam dolorem
+      hic corporis, quam facere, quis ea quae maxime molestiae maiores quasi
+      inventore? Dignissimos, qui. Amet, quam accusamus. Deleniti
+      necessitatibus nam facilis aliquam mollitia ea itaque a, commodi
+      quibusdam placeat dolorum maiores dolores aspernatur numquam quidem,
+      fugiat fuga cum. Impedit, aspernatur! Aut cum deserunt repudiandae amet
+      suscipit dicta repellat totam laudantium. Nisi optio voluptatibus
+      tenetur earum itaque facilis perferendis adipisci temporibus. Molestias
+      saepe esse in voluptate facilis suscipit iure. Molestias, asperiores
+      consequatur. Aspernatur quam rerum ex accusantium delectus ipsa autem
+      ducimus assumenda quae, voluptatum magnam voluptatem consequatur ea!
+      Modi, dolore minima minus autem nobis optio architecto nam praesentium
+      corrupti vitae vero suscipit quas totam facilis quis officia ratione
+      molestiae incidunt voluptas pariatur magnam recusandae maxime illum?
+      Ipsum fugiat obcaecati consequatur? Ducimus, numquam, natus ad neque
+      reprehenderit voluptatibus quibusdam recusandae quis at nobis corrupti
+      pariatur facere debitis aut asperiores commodi autem perferendis minus
+      eius error necessitatibus? Voluptate facilis quia maiores quasi qui
+      accusantium quibusdam, aliquid, cum, quis odio blanditiis molestiae
+      officia unde ratione architecto at dolores omnis! Veritatis, molestiae
+      alias voluptas, ipsum necessitatibus cumque sequi tempora, rem inventore
+      illum veniam omnis sint ipsam numquam dolor accusantium. Accusamus eum
+      impedit velit facilis obcaecati dolorem dolore quisquam culpa dolor
+      magni sint a neque similique maxime voluptatum laboriosam nisi quos quis
+      mollitia harum, temporibus nam omnis nulla ut! Vitae magnam expedita
+      eaque ex illo blanditiis. Quasi pariatur mollitia officiis maiores harum
+      fuga. Cum, esse impedit! Perspiciatis magni, ex eius in hic consequatur
+      aliquid, vel ipsa consectetur libero esse recusandae architecto tenetur.
+      Aspernatur qui quam praesentium eveniet quis eius repellendus pariatur
+      voluptatum, dolorem corporis vel fugiat veniam accusamus animi assumenda
+      facere illum minus alias id obcaecati ullam quidem vitae iure eum.
+      Recusandae eum repellat at qui, cupiditate sit enim, a ea, obcaecati
+      necessitatibus dignissimos aliquid consequuntur ipsa reprehenderit.
+      Natus explicabo eos similique soluta quas. Et quod animi quos quam
+      harum? Animi rem praesentium incidunt natus, earum nihil quo asperiores
+      ab culpa? Voluptate sit omnis reprehenderit natus suscipit eligendi quos
+      consequuntur libero, dicta illum maxime similique ipsum debitis saepe
+      dolores modi. Animi culpa ducimus repellat, aspernatur ullam dignissimos
+      harum autem necessitatibus asperiores voluptatem quis repudiandae sed
+      minus ipsum aperiam iste impedit voluptas quos accusamus commodi
+      delectus deserunt placeat eum. Ad, veritatis harum. Asperiores
+      accusantium non ratione facere quas impedit, praesentium ab magni ad
+      unde eos quis quibusdam voluptate? Esse.
+    </p>
+    <h1 id="ubicacion" class="titulo">Ubicacion</h1>
+    <p class="formato-ubicacion">
+      <strong>Av. Del rastro 256.</strong> Colonia San Rafael. Toluca México
+    </p>
+
+    <div class="container-map">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d489.63443797482705!2d-99.62922459507178!3d19.321516115291477!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d275fc6fcdd857%3A0x66716d8a7a3b1078!2sConsultorio%20Dental%20Dra.%20Mayra%20L%C3%B3pez%20Ben%C3%ADtez!5e1!3m2!1ses!2smx!4v1669864533219!5m2!1ses!2smx"
+        width="70%" height="550" style="border: 0" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </main>
+
+  <script src="https://kit.fontawesome.com/7e5b2d153f.js" crossorigin="anonymous"></script>
+  <script defer src="JavaScript.js"></script>
+  <script  src="Form.js"></script>
+  <!--  los scripts van hasta abajo del body, primero se carga la estructura, estilos y al final los scripts-->
+
+  <!--libreria carrusel-->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+</body>
+
+</html>
